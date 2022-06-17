@@ -50,7 +50,7 @@ public class Blog {
     @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<Tag> listTags = new ArrayList<>();
 
-    // 不会进入数据库的属性值，只是存在于类中本身
+    // 不会进入数据库的属性值，只是存在于类中本身，ORM框架将会忽略该属性
     @Transient
     private String tagIds;  // 必须于前端的name的值一致 name="tagIds" (1,2,3,4)
 
