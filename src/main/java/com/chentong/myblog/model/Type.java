@@ -12,9 +12,12 @@ public class Type {
     @Id
     @GeneratedValue //选择自动生成主键
     private long id;
-    @NotBlank(message = "存入的类型名称不能为空") //后端对存入的数据进行验证; 在前端types-edit使用该错误的信息
+
+    //后端对存入的数据进行验证; 在前端types-edit使用该错误的信息
+    @NotBlank(message = "存入的类型名称不能为空")
     private String name;
-    // 使用Blog中type属性 建立类联系和维护关系 ==> 被维护端
+
+    // 使用Blog中type属性, 建立类联系和维护关系 ==> 被维护端
     @OneToMany(mappedBy = "type")
     private List<Blog> listBlogs = new ArrayList<>();
 
@@ -52,5 +55,4 @@ public class Type {
             ", name='" + name + '\'' +
             '}';
     }
-
 }

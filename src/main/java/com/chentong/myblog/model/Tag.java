@@ -12,10 +12,13 @@ public class Tag {
     @Id
     @GeneratedValue //选择自动生成主键
     private long id;
-    @NotBlank(message = "存入的标签名称不能为空") //后端对存入的数据进行验证; 在前端tags-edit使用该错误的信息
+
+    // 后端对存入的数据进行验证; 在前端tags-edit使用该错误的信息
+    @NotBlank(message = "存入的标签名称不能为空")
     private String name;
 
-    @ManyToMany(mappedBy = "listTags") //被维护端
+    // 被维护端
+    @ManyToMany(mappedBy = "listTags")
     private List<Blog> listBlogs = new ArrayList<>();
 
     public Tag() {
@@ -52,5 +55,4 @@ public class Tag {
             ", name='" + name + '\'' +
             '}';
     }
-
 }

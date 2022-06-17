@@ -1,6 +1,6 @@
 package com.chentong.myblog.web;
 
-import com.chentong.myblog.model.BlogQuery;
+import com.chentong.myblog.query.BlogQuery;
 import com.chentong.myblog.model.Type;
 import com.chentong.myblog.service.AdminService;
 import com.chentong.myblog.service.TypeService;

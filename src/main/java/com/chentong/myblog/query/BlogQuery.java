@@ -1,4 +1,4 @@
-package com.chentong.myblog.model;
+package com.chentong.myblog.query;
 
 /**
  * 用于查询Blog的Query，所需要的3个查询的数据

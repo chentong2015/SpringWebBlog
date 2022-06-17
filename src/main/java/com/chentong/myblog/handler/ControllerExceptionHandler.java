@@ -10,10 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * <<拦截所有异常的信息，包括404和500异常>>，处理并显示error
- * 拦截有@Controller标识的
- */
+// 拦截有@Controller标识: 拦截所有异常的信息，包括404和500异常，处理并显示error
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
@@ -39,5 +36,4 @@ public class ControllerExceptionHandler {
         modelAndView.setViewName("error/error");
         return modelAndView;
     }
-
 }

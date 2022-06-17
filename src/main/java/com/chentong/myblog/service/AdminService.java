@@ -1,7 +1,7 @@
 package com.chentong.myblog.service;
 
 import com.chentong.myblog.model.Blog;
-import com.chentong.myblog.model.BlogQuery;
+import com.chentong.myblog.query.BlogQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

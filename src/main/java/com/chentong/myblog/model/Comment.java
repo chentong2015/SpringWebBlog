@@ -16,17 +16,20 @@ public class Comment {
     private String email;
     private String content;
     private String avatar;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     @ManyToOne
     private Blog blog;
 
-    //构建关联的属性关系
-    @OneToMany(mappedBy = "parentComment") //主动维护，当作parentComment来看待去维护多个回复的子comment
-    private List<Comment> replyComments = new ArrayList<>();
     @ManyToOne
     private Comment parentComment;
+
+    // TODO. 在@OneToMany注解上设置维护关系，将维护关系交给Many-多端
+    // 下面作为被维护端
+    @OneToMany(mappedBy = "parentComment")
+    private List<Comment> replyComments = new ArrayList<>();
 
     // 判断是否是管理员评论的信息
     private boolean admin;
@@ -121,5 +124,4 @@ public class Comment {
                 ", admin=" + admin +
                 '}';
     }
-
 }

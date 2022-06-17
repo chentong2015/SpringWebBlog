@@ -23,15 +23,14 @@ public class Blog {
     private Integer views; // 浏览的次数
     private Integer good; // 点赞的次数
 
-    /**
-     * 数据库的读写规则，对于布尔类型的变量，要做前端的判断，则必须使用小写的变量符号 !!!!!!
-     */
+    // 数据库的读写规则，对于布尔类型的变量，要做前端的判断，则必须使用小写的变量符号 !!!!!!
     private boolean appreciation; // 是否允许赞赏功能
     private boolean shared; // 转载声明的一个区域
     private boolean comment; // 是否允许留言
     private boolean published; // 判断是草稿还是已经发布了 1 = true
     private boolean recommend; // 是否推荐文章
 
+    // 表示处理时间数据
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,22 +39,26 @@ public class Blog {
     // TODO. 标记表之间的关联和外键的一些信息 !!
     @ManyToOne
     private User user;
+
+    // TODO. 设置外键的(列)的名称，同时设定ForeignKey的特定值 !!
     @ManyToOne
+    @JoinColumn(name = "type_id", foreignKey = @ForeignKey(name = "blog_type_pk"))
     private Type type; // 只有唯一的值
 
-    /**
-     *  级联新增 ：新增Blog是如果有新增加的Tag也会加到Tag的表中
-     */
+    // 级联新增：新增Blog是如果有新增加的Tag也会加到Tag的表中
+    // CascadeType.PERSIST 级联的类型，表示在持久化数据时使用级联 !!
     @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<Tag> listTags = new ArrayList<>();
 
-    @Transient //不会进入数据库的属性值，只是存在于类中本身 ===> 创建特殊的方法来设置数据
+    // 不会进入数据库的属性值，只是存在于类中本身
+    @Transient
     private String tagIds;  // 必须于前端的name的值一致 name="tagIds" (1,2,3,4)
 
     @OneToMany(mappedBy = "blog") // 始终在OneToMany的一段建立主动维护的关系
     private List<Comment> listComments = new ArrayList<>();
 
-    // 类的构造方法; 如果不自定义含参的构造方法，编译器会自动创建一个不带参数的构造方法。反之则没有该方法的出现
+    // 类的构造方法; 如果不自定义含参的构造方法
+    // 编译器会自动创建一个不带参数的构造方法。反之则没有该方法的出现
     public Blog() {
     }
 
@@ -267,5 +270,4 @@ public class Blog {
             ", listComments=" + listComments +
             '}';
     }
-
 }
